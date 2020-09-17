@@ -8,12 +8,7 @@ const { NODE_ENV } = require('./config')
 const { Pool } = require('pg')
 const app = express()
 
-const registerRoute = require('./routes/register');
-const loginRoute = require('./routes/login');
-const friendRoute = require('./routes/friend');
-const userRoute = require('./routes/user');
-const messageRoute = require('./routes/message');
-const accountRoute = require('./routes/account');
+const foldersRoute = require('./routes/folders');
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
@@ -33,12 +28,8 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
 
-app.use('/register', registerRoute);
-app.use('/login', loginRoute);
-app.use('/friend', friendRoute);
-app.use('/user', userRoute);
-app.use('/message', messageRoute);
-app.use('/account', accountRoute);
+app.use('/folders', foldersRoute);
+
 
 app.use(function errorHandler(error, req, res, next) {
     let response;
