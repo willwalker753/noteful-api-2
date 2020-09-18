@@ -9,6 +9,7 @@ const { Pool } = require('pg')
 const app = express()
 
 const foldersRoute = require('./routes/folders');
+const notesRoute = require('./routes/notes');
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
@@ -29,6 +30,7 @@ app.use(helmet())
 app.use(cors())
 
 app.use('/folders', foldersRoute);
+app.use('/notes', notesRoute);
 
 
 app.use(function errorHandler(error, req, res, next) {
